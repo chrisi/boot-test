@@ -26,16 +26,21 @@ public class MyErrorController implements ErrorController {
   private static final String StatusCode = "javax.servlet.error.status_code";
   private static final String Message = "javax.servlet.error.message";
   private static final String RequestUri = "javax.servlet.error.request_uri";
+  private static final String Exception = "javax.servlet.error.exception";
 
   private static final Logger LOG = LoggerFactory.getLogger(MyErrorController.class);
 
   @RequestMapping(value = "/error")
   public String error(Model model, HttpServletRequest req, HttpServletResponse resp, RedirectAttributes ra) throws IOException {
     if ((Integer) req.getAttribute(StatusCode) == 404) {
-      ra.addFlashAttribute("error", String.format("Page %s could not be found", req.getAttribute(RequestUri)));
+      ra.addFlashAttribute("error", "Page not be found:" + req.getAttribute(RequestUri));
     }
     if ((Integer) req.getAttribute(StatusCode) == 500) {
-      ra.addFlashAttribute("error", String.format("Page %s could not be found", req.getAttribute(Message)));
+      Throwable ex = (Throwable) req.getAttribute(Exception);
+      if (ex.getCause() != null) {
+        ex = ex.getCause();
+      }
+      ra.addFlashAttribute("error", "Internal error occured: " + ex.getMessage());
     }
     return "redirect:/";
   }

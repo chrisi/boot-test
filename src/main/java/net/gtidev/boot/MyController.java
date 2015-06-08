@@ -29,4 +29,10 @@ public class MyController {
     model.addAttribute("name", "Christian");
     return "hello";
   }
+
+  @RequestMapping("/profile")
+  public String profile(Model model) {
+    throw new RuntimeException("my custom internal error");
+    //return "hello";
+  }
 }
