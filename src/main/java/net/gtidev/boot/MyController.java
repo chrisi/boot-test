@@ -7,6 +7,9 @@
  */
 package net.gtidev.boot;
 
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -32,7 +35,14 @@ public class MyController {
 
   @RequestMapping("/profile")
   public String profile(Model model) {
+    Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+    UserDetails user = (UserDetails) auth.getPrincipal();
+    model.addAttribute("user", user.getUsername());
+    return "profile";
+  }
+
+  @RequestMapping("/failure")
+  public String failure() {
     throw new RuntimeException("my custom internal error");
-    //return "hello";
   }
 }

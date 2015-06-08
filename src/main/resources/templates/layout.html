@@ -40,6 +40,7 @@
         <li><a href="#" th:href="@{/hello}">Hello</a></li>
         <li><a href="#" th:href="@{/world}">World</a></li>
         <li><a href="#" th:href="@{/profile}">Profile</a></li>
+        <li><a href="#" th:href="@{/failure}">Failure</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li th:if="${#authorization.expression('!isAuthenticated()')}">
