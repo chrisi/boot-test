@@ -29,5 +29,4 @@ public class MyController {
     model.addAttribute("name", "Christian");
     return "hello";
   }
-
 }
