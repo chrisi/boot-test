@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3"
+      layout:decorator="layout">
+
+<div layout:fragment="content">
+
+  <div class="row">
+    <div class="col-lg-offset-2 col-lg-8">
+      <h3>Enter address</h3>
+
+      <form class="form-horizontal" th:action="@{/address}" th:object="${address}" method="post">
+
+        <div th:class="${#fields.hasErrors('street')}? 'form-group has-error' :'form-group'">
+          <label for="inputStreet" class="col-lg-3 control-label">Street</label>
+
+          <div class="col-lg-9">
+            <input type="text" class="form-control" id="inputStreet" placeholder="Street" th:field="*{street}"/>
+
+            <div class="help-block with-errors" th:if="${#fields.hasErrors('street')}" th:errors="*{street}"></div>
+          </div>
+        </div>
+        <div th:class="${#fields.hasErrors('zip')}? 'form-group has-error' :'form-group'">
+          <label for="inputZip" class="col-lg-3 control-label">Zip</label>
+
+          <div class="col-lg-9">
+            <input type="text" class="form-control" id="inputZip" placeholder="Zip" th:field="*{zip}"/>
+
+            <div class="help-block with-errors" th:if="${#fields.hasErrors('zip')}" th:errors="*{zip}"></div>
+          </div>
+        </div>
+        <div th:class="${#fields.hasErrors('city')}? 'form-group has-error' :'form-group'">
+          <label for="inputCity" class="col-lg-3 control-label">City</label>
+
+          <div class="col-lg-9">
+            <input type="text" class="form-control" id="inputCity" placeholder="City" th:field="*{city}"/>
+
+            <div class="help-block with-errors" th:if="${#fields.hasErrors('city')}" th:errors="*{city}"></div>
+          </div>
+        </div>
+
+        <p>
+          <button type="submit" class="btn btn-primary btn-lg btn-block">Register</button>
+        </p>
+      </form>
+    </div>
+  </div>
+
+</div>
+
+</html>
