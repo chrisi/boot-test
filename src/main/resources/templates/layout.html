@@ -44,10 +44,10 @@
         <li><a href="#" th:href="@{/failure}">Failure</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        <li th:if="${#authorization.expression('!isAuthenticated()')}">
+        <li th:if="${noAuth==null and #authorization.expression('!isAuthenticated()')}">
           <a th:href="@{/login}">Login</a>
         </li>
-        <li th:if="${#authorization.expression('isAuthenticated()')}">
+        <li th:if="${noAuth==null and #authorization.expression('isAuthenticated()')}">
           <a th:href="@{/logout}">Logout</a>
         </li>
       </ul>

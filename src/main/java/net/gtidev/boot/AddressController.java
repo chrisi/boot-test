@@ -7,12 +7,12 @@
  */
 package net.gtidev.boot;
 
-import javax.validation.Valid;
-
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+
+import javax.validation.Valid;
 
 @Controller
 @RequestMapping("/address")
@@ -27,7 +27,7 @@ public class AddressController {
   public String post(@Valid Address address, BindingResult result) {
     int i = result.getErrorCount();
 
-    if (!address.getZip().equals("63322")) {
+    if (!address.getZip().equals("63322") || i > 0) {
       result.rejectValue("zip", "zip.wrongValue", "zip has to be 63322");
       return "address";
     }

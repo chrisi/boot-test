@@ -3,15 +3,20 @@
       xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3"
-      layout:decorator="layout">
+      layout:decorator="layout" th:with="noAuth=true">
 
 <div layout:fragment="content">
 
   <div class="row">
-    <div class="col-lg-offset-2 col-lg-8">
-      <h3>Hello World</h3>
+    <div class="col-lg-offset-3 col-lg-6">
+
+      <div class="alert alert-danger" role="alert">
+        <span class="glyphicon glyphicon-exclamation-sign"></span>&nbsp;Page not found
+      </div>
+
     </div>
   </div>
 
 </div>
 </html>
+
