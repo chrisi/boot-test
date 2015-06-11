@@ -11,8 +11,8 @@
     <div class="col-lg-offset-2 col-lg-8">
       <h3 th:inline="text">Hello [[${#httpServletRequest.remoteUser}]]!</h3>
 
-      <form class="form-horizontal" th:action="@{/logout}" method="post">
-        <button type="submit" class="btn btn-primary">Logout</button>
+      <form class="form-horizontal" th:action="@{/exec}" method="post">
+        <button type="submit" class="btn btn-primary">Start nodepad</button>
       </form>
 
     </div>

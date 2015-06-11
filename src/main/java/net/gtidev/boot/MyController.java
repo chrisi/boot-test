@@ -7,6 +7,11 @@
  */
 package net.gtidev.boot;
 
+import org.apache.commons.exec.CommandLine;
+import org.apache.commons.exec.DaemonExecutor;
+import org.apache.commons.exec.DefaultExecutor;
+import org.apache.commons.exec.ExecuteException;
+import org.apache.commons.exec.ExecuteResultHandler;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -38,6 +43,31 @@ public class MyController {
     Authentication auth = SecurityContextHolder.getContext().getAuthentication();
     UserDetails user = (UserDetails) auth.getPrincipal();
     model.addAttribute("user", user.getUsername());
+    return "profile";
+  }
+
+  @RequestMapping("/exec")
+  public String exec() {
+    String line = "notepad.exe";
+    CommandLine cmdLine = CommandLine.parse(line);
+    DefaultExecutor executor = new DaemonExecutor();
+    executor.setExitValue(0);
+    try {
+      executor.execute(cmdLine, new ExecuteResultHandler() {
+        @Override
+        public void onProcessComplete(int i) {
+          int a = 0;
+        }
+
+        @Override
+        public void onProcessFailed(ExecuteException e) {
+          int i = 0;
+        }
+      });
+    }
+    catch (Exception e) {
+    }
+
     return "profile";
   }
 
